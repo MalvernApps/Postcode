@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using postcode.Xml3CSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Xml.Serialization;
 
 namespace postcode
 {
@@ -101,6 +102,32 @@ namespace postcode
             Console.WriteLine(s);
 
             output.Text = s;
+        }
+
+        private void getxml(object sender, RoutedEventArgs e)
+        {
+            //string s = File.ReadAllText("xml.txt");
+
+            string url = @"https://xmldata.qrz.com/xml/current/?username=M0JFG;password=" + password.Text;
+
+            string s = get(url);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(QRZDatabase));
+            using (StringReader reader = new StringReader(s))
+            {
+                var test = (QRZDatabase)serializer.Deserialize(reader);
+            }
+        }
+
+        private void getxml2(object sender, RoutedEventArgs e)
+        {
+            string s = File.ReadAllText("xml2.txt");
+
+            XmlSerializer serializer = new XmlSerializer(typeof(Xml2CSharp.QRZDatabase));
+            using (StringReader reader = new StringReader(s))
+            {
+                var test = (Xml2CSharp.QRZDatabase)serializer.Deserialize(reader);
+            }
         }
     }
 }

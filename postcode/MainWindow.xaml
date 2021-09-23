@@ -14,9 +14,20 @@
             <Label>Postcode:</Label>
                 <TextBox x:Name="posty" Margin="10,0,0,0">WR14 2XD</TextBox>
                 <Button Click="getres" Width="100" Margin="10,0,0,0">Get</Button>
-        </StackPanel>
+                <Button Click="getxml" Width="100" Margin="10,0,0,0">XML</Button>
+                <Button Click="getxml2" Width="100" Margin="10,0,0,0">XML</Button>
+            </StackPanel>
 
-            <TextBlock x:Name="output"></TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label>Username:</Label>
+                <TextBox x:Name="username" Width="120" Margin="10,0,0,0">M0JFG</TextBox>
+                <Label>Password:</Label>
+                <TextBox x:Name="password" Width="120" Margin="10,0,0,0">WR14 2XD</TextBox>
+                <Label>Target:</Label>
+                <TextBox x:Name="callsign" Width="120"  Margin="10,0,0,0">M0JFG</TextBox>
+            </StackPanel>
+
+                <TextBlock x:Name="output"></TextBlock>
 
         </StackPanel>
     </Grid>
