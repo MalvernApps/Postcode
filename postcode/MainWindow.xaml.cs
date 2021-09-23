@@ -41,7 +41,7 @@ namespace postcode
 
         }
 
-        protected string get(string url)
+        public string get(string url)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace postcode
                 return "Error: " + ex.Message;
             }
         }
-        public string HttpGet(string URI)
+        public string HttpGet7(string URI)
         {
             WebClient client = new WebClient();
 
@@ -91,7 +91,10 @@ namespace postcode
         private void getres(object sender, RoutedEventArgs e)
         {
             string newu = URL + posty.Text;
-            string s = get(newu);
+
+            string s = Access.get(newu);
+
+            //string s = get(newu);
 
             Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(s);
 
