@@ -26,11 +26,14 @@ namespace postcode
     public partial class MainWindow : Window
     {
         string postcode = "WR14 2XD";
+        QRZDatabase session;
 
         // https://api.postcodes.io/postcodes/%20WR14%202XD
 
         private const string URL = "https://api.postcodes.io/postcodes/";
         private const string DATA = @"";
+
+        string urlcallsign = @"https://xmldata.qrz.com/xml/current/?s=";
 
         public MainWindow()
         {
@@ -115,18 +118,30 @@ namespace postcode
             XmlSerializer serializer = new XmlSerializer(typeof(QRZDatabase));
             using (StringReader reader = new StringReader(s))
             {
-                var test = (QRZDatabase)serializer.Deserialize(reader);
-            }
+                session = (QRZDatabase)serializer.Deserialize(reader);
+             }
         }
 
         private void getxml2(object sender, RoutedEventArgs e)
         {
-            string s = File.ReadAllText("xml2.txt");
+            if ( session == null )
+            {
+                MessageBox.Show("No session");
+                return;
+            }
+
+            string news = urlcallsign + session.Session.Key + ";callsign=M0JFG";
+
+            string s = get(news);
+
+            //string s = File.ReadAllText("xml2.txt");
 
             XmlSerializer serializer = new XmlSerializer(typeof(Xml2CSharp.QRZDatabase));
             using (StringReader reader = new StringReader(s))
             {
                 var test = (Xml2CSharp.QRZDatabase)serializer.Deserialize(reader);
+
+                output.Text = Newtonsoft.Json.JsonConvert.SerializeObject(test, Formatting.Indented );
             }
         }
     }

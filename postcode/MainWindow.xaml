@@ -14,8 +14,8 @@
             <Label>Postcode:</Label>
                 <TextBox x:Name="posty" Margin="10,0,0,0">WR14 2XD</TextBox>
                 <Button Click="getres" Width="100" Margin="10,0,0,0">Get</Button>
-                <Button Click="getxml" Width="100" Margin="10,0,0,0">XML</Button>
-                <Button Click="getxml2" Width="100" Margin="10,0,0,0">XML</Button>
+                <Button Click="getxml" Width="100" Margin="10,0,0,0">Open Session</Button>
+                <Button Click="getxml2" Width="100" Margin="10,0,0,0">Query Callsign</Button>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
